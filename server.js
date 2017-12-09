@@ -26,12 +26,20 @@ app.get('/cars', function(req, res) {
     .orderBy('id')
     .then((carsList)=>{
       res.json(carsList)
-    });
+    })
 
 })
 
-app.get('/todos/:id', function(req, res) {
-  res.send('get-one route')
+app.get('/cars/:id', function(req, res) {
+  knex('cars')
+    .select()
+    .where('id', req.params.id)
+    .then((car)=>{
+      res.json(car)
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
 })
 
 app.post('/todos', function(req, res) {
