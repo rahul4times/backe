@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
           transmission: 'AT',
           price: 24000,
           sale: 10,
-          vin: '1H5BV1F15AA033979',
+          vin: '1H5BV1F15AA033979'
         },
         { year: '2018',
           make: 'Honda',
@@ -30,7 +30,7 @@ exports.seed = function(knex, Promise) {
           transmission: 'AT',
           price: 21000,
           sale: 10,
-          vin: '1H5BV1F15AA034979',
+          vin: '1H5BV1F15AA034979'
         },
         { year: '2018',
           make: 'Honda',
@@ -43,8 +43,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Beige',
           transmission: '9 Speed AT',
           price: 30930,
-          sale: 0
-          vin: '1H5NV1F15AA034979',
+          sale: 0,
+          vin: '1H5NV1F15AA034979'
         },
         { year: '2018',
           make: 'Honda',
@@ -57,8 +57,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 25000,
-          sale: 0
-          vin: '1H5NV4F15AA034976',
+          sale: 0,
+          vin: '1H5NV4F15AA034976'
         },
         { year: '2018',
           make: 'Honda',
@@ -71,8 +71,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Gray',
           transmission: 'AT',
           price: 21000,
-          sale: 0
-          vin: '1H5FV4F15CA034976',
+          sale: 0,
+          vin: '1H5FV4F15CA034976'
         },
         { year: '2018',
           make: 'Toyota',
@@ -85,8 +85,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Gray',
           transmission: 'AT',
           price: 33000,
-          sale: 0
-          vin: '1H5FV4F15CA024946',
+          sale: 0,
+          vin: '1H5FV4F15CA024946'
         },
         { year: '2018',
           make: 'Toyota',
@@ -99,8 +99,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Light Gray',
           transmission: 'AT',
           price: 29000,
-          sale: 0
-          vin: '1H5FB4F15CA024846',
+          sale: 0,
+          vin: '1H5FB4F15CA024846'
         },
         { year: '2018',
           make: 'Toyota',
@@ -113,8 +113,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Midnight Black',
           transmission: 'AT',
           price: 23000,
-          sale: 0
-          vin: '1F5FB4F12CA024841',
+          sale: 0,
+          vin: '1F5FB4F12CA024841'
         },
         { year: '2018',
           make: 'Toyota',
@@ -127,8 +127,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Gray',
           transmission: 'AT',
           price: 23593,
-          sale: 0
-          vin: '3F5FB4F12DA024811',
+          sale: 0,
+          vin: '3F5FB4F12DA024811'
         },
         { year: '2018',
           make: 'Toyota',
@@ -141,8 +141,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Gray',
           transmission: 'AT',
           price: 30593,
-          sale: 0
-          vin: '3F5FE4F12DA0T4811',
+          sale: 0,
+          vin: '3F5FE4F12DA0T4811'
         },
         { year: '2018',
           make: 'Mercedes-benz',
@@ -155,8 +155,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 42865,
-          sale: 0
-          vin: '3F5FE4F11DA0T4111',
+          sale: 0,
+          vin: '3F5FE4F11DA0T4111'
         },
         { year: '2018',
           make: 'Mercedes-benz',
@@ -169,8 +169,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Brown',
           transmission: 'AT',
           price: 42865,
-          sale: 0
-          vin: '3M5FE4F11DH0T4111',
+          sale: 0,
+          vin: '3M5FE4F11DH0T4111'
         },
         { year: '2018',
           make: 'Mercedes-benz',
@@ -183,8 +183,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 51000,
-          sale: 0
-          vin: '9F5FE4F11DA0T4111',
+          sale: 0,
+          vin: '9F5FE4F11DA0T4111'
         },
         { year: '2018',
           make: 'Audi',
@@ -197,8 +197,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 36000,
-          sale: 0
-          vin: '1F5FE6F11DA9T4111',
+          sale: 0,
+          vin: '1F5FE6F11DA9T4111'
         },
         { year: '2018',
           make: 'Audi',
@@ -211,8 +211,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 43660,
-          sale: 0
-          vin: '1F5FE6T11DA9T7117',
+          sale: 0,
+          vin: '1F5FE6T11DA9T7117'
         },
         { year: '2018',
           make: 'Audi',
@@ -225,8 +225,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 52660,
-          sale: 0
-          vin: '125FE3T11DA9T8117',
+          sale: 0,
+          vin: '125FE3T11DA9T8117'
         },
         { year: '2018',
           make: 'Maserati',
@@ -239,8 +239,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Red',
           transmission: 'AT',
           price: 143000,
-          sale: 0
-          vin: '125ZE3T11ZA9T8117',
+          sale: 0,
+          vin: '125ZE3T11ZA9T8117'
         },
         { year: '2018',
           make: 'Maserati',
@@ -253,8 +253,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 96900,
-          sale: 0
-          vin: '120ZE3T15ZQ7T8117',
+          sale: 0,
+          vin: '120ZE3T15ZQ7T8117'
         },
         { year: '2018',
           make: 'Lamborghini',
@@ -267,8 +267,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 599000,
-          sale: 0
-          vin: '150ZE3T81QQ9T8117',
+          sale: 0,
+          vin: '150ZE3T81QQ9T8117'
         },
         { year: '2018',
           make: 'Subaru',
@@ -281,8 +281,8 @@ exports.seed = function(knex, Promise) {
           int_color: 'Black',
           transmission: 'AT',
           price: 27689,
-          sale: 0
-          vin: '120ZE3T81VQ9N8115',
+          sale: 0,
+          vin: '120ZE3T81VQ9N8115'
         }
       ]);
     });

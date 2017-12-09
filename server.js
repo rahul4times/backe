@@ -20,8 +20,14 @@ app.get('/', function(req, res) {
   res.render('index', { title: 'DBConfig' });
 })
 
-app.get('/todos', function(req, res) {
-  res.send('get-all route')
+app.get('/cars', function(req, res) {
+  knex('cars')
+    .select()
+    .orderBy('id')
+    .then((carsList)=>{
+      res.json(carsList)
+    });
+
 })
 
 app.get('/todos/:id', function(req, res) {
