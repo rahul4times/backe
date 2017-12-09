@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
     table.string('transmission');
     table.integer('price');
     table.integer('sale');
+    table.boolean('status');
     table.string('vin');
     table.timestamps(true, true);
   });

@@ -2,6 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('images', (table)=>{
     table.increments();
     table.integer('car_id')
+    .notNullable()
     .references('id')
     .inTable('cars')
     .onDelete('CASCADE')
