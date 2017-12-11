@@ -5,6 +5,7 @@ var port = process.env.PORT || 8000;
 var cors = require('cors');
 var logger = require('morgan');
 var knex = require('./db/knex');
+const bookshelf = require('bookshelf')(knex);
 
 var app = express();
 
@@ -16,46 +17,189 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+// Bookshelf relationship between tables
+var Cars = bookshelf.Model.extend({
+  tableName: 'cars',
+  images: function() {
+    return this.hasMany(Images);
+  },
+  features: function() {
+    return this.hasMany(Features);
+  },
+});
+
+var Images = bookshelf.Model.extend({
+  tableName: 'images',
+  cars: function(){
+    return this.belongsTo(Cars);
+  }
+})
+
+var Features = bookshelf.Model.extend({
+  tableName: 'features',
+  cars: function(){
+    return this.belongsTo(Cars);
+  }
+})
+
+// Frontend Starts Here
+
 app.get('/', function(req, res) {
-  res.render('index', { title: 'DBConfig' });
+  res.render('index', { title: 'Routes' });
 })
 
+
+
+//------- Display All Cars --------- //
 app.get('/cars', function(req, res) {
-  knex('cars')
-    .select()
-    .orderBy('id')
-    .then((carsList)=>{
-      res.json(carsList)
-    })
-
+  knex.raw(`SELECT DISTINCT ON (cars.id)
+    cars.id, cars.year, cars.make, cars.model, cars.trim, cars.engine, cars.drive_type, cars.body_type, cars.ext_color, cars.int_color, cars.transmission, cars.price, cars.sale, cars.status, cars.vin, images.link FROM cars  RIGHT JOIN images ON cars.id = images.car_id;`)
+  .then(data => {
+    res.json(data.rows);
+  })
+  .catch(error => {
+    console.log('error', error)
+  })
 })
 
+// Using bookshelf joining images and features with cars table
+//------- Display One Car --------- //
 app.get('/cars/:id', function(req, res) {
-  knex('cars')
-    .select()
+  Cars.where({id: req.params.id})
+    .fetch({withRelated: ['images','features']})
+    .then(car => res.send({car: car}))
+    .catch(error=>{
+      console.log('error', error);
+    })
+})
+
+//------- Add One Car --------- //
+app.post('/car', function(req, res){
+  new Cars().save({
+    year: req.body.year,
+    make: req.body.make,
+    model: req.body.model,
+    trim: req.body.trim,
+    engine: req.body.engine,
+    drive_type: req.body.drive_type,
+    body_type: req.body.body_type,
+    ext_color: req.body.ext_color,
+    int_color: req.body.int_color,
+    transmission: req.body.transmission,
+    price: req.body.price,
+    sale: req.body.sale,
+    status: req.body.status,
+    vin: req.body.vin,
+  })
+  .then(function(car){
+    new Images().save({
+      car_id: car.get('id'),
+      link: req.body.linkOne,
+      link: req.body.linkTwo
+    }),
+    new Features().save({
+      car_id: car.get('id'),
+      electStab: req.body.electStab,
+      wireless: req.body.wireless,
+      seat: req.body.seat,
+      keyless: req.body.keyless,
+      tripComp: req.body.tripComp,
+      tirePressure: req.body.tirePressure,
+      wiper: req.body.wiper,
+      headlight: req.body.headlight
+    })
+    .then(res.sendStatus(200));
+  });
+})
+
+
+//------- Backend Starts Here --------- //
+//------- Display All Messages ------- //
+app.get('/messages', function(req, res) {
+  knex('user')
+    .orderBy('id')
+    .then(userList => {
+      res.send(userList)
+    })
+    .catch(error => {
+      console.log('error', error);
+    })
+
+})
+
+//------- Display One Message --------- //
+app.get('/messages/:id', function(req, res) {
+  knex('user')
     .where('id', req.params.id)
-    .then((car)=>{
-      res.json(car)
+    .then(oneMessage => {
+      res.send(oneMessage)
     })
-    .catch((error)=>{
-      console.log(error);
+    .catch(error => {
+      console.log('error', error);
+    })
+
+})
+
+//------- Post One Message --------- //
+app.post('/messages/', function(req, res) {
+  knex('user')
+    .insert({
+      uname: req.body.uname,
+      uemail: req.body.uemail,
+      uphone: req.body.uphone,
+      uinterest: req.body.uinterest,
+      umessage: req.body.umessage,
+      followup: req.body.followup,
+      read: req.body.read
+    })
+    .then(res.sendStatus(200))
+    .catch(error => {
+      console.log('error', error);
     })
 })
 
-app.post('/todos', function(req, res) {
-  res.send('add-one route')
+//------- Edit One Message --------- //
+app.patch('/messages/:id', function(req, res) {
+  knex('user')
+    .where('id', req.params.id)
+    .update({
+      followup: req.body.followup,
+      read: req.body.read
+    })
+    .then(res.sendStatus(200))
+    .catch(error => {
+      console.log('error', error);
+    })
 })
 
-app.put('/todos/:id', function(req, res) {
-  res.send('change/update-one route')
+//------- Delete One Message --------- //
+app.delete('/messages/:id', function(req, res) {
+  knex('user')
+    .where('id', req.params.id)
+    .del()
+    .then(res.sendStatus(200))
+    .catch(error => {
+      console.log('error', error);
+    })
 })
 
-app.delete('/todos/:id', function(req, res) {
-  res.send('delete/remove-one route')
-})
+//
+
+// app.post('/todos', function(req, res) {
+//   res.send('add-one route')
+// })
+//
+// app.put('/todos/:id', function(req, res) {
+//   res.send('change/update-one route')
+// })
+//
+// app.delete('/todos/:id', function(req, res) {
+//   res.send('delete/remove-one route')
+// })
 
 
 
 app.listen(port, function() {
-console.log("listening on port: ", port);
+console.log("Howdy! Port:", port);
 })

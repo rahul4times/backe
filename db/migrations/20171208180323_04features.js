@@ -7,14 +7,14 @@ exports.up = function(knex, Promise) {
     .inTable('cars')
     .onDelete('CASCADE')
     .index();
-    table.string('feature_1');
-    table.string('feature_2');
-    table.string('feature_3');
-    table.string('feature_4');
-    table.string('feature_5');
-    table.string('feature_6');
-    table.string('feature_7');
-    table.string('feature_8');
+    table.string('electStab');
+    table.string('wireless');
+    table.string('seat');
+    table.string('keyless');
+    table.string('tripComp');
+    table.string('tirePressure');
+    table.string('wiper');
+    table.string('headlight');
     table.timestamps(true, true);
   })
 };
