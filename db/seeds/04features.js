@@ -168,61 +168,6 @@ exports.seed = function(knex, Promise) {
           tirePressure: 'Low tire pressure warning',
           wiper: 'Rear window wiper',
           headlight: 'Fully automatic headlights'
-        },
-        {
-          car_id: 16,
-          electStab: 'Electronic stability',
-          wireless: 'Wireless phone connectivity',
-          seat: 'Split folding rear seat',
-          keyless: 'Remote keyless entry',
-          tripComp: 'Trip computer',
-          tirePressure: 'Low tire pressure warning',
-          wiper: 'Rear window wiper',
-          headlight: 'Fully automatic headlights'
-        },
-        {
-          car_id: 17,
-          electStab: 'Electronic stability',
-          wireless: 'Wireless phone connectivity',
-          seat: 'Split folding rear seat',
-          keyless: 'Remote keyless entry',
-          tripComp: 'Trip computer',
-          tirePressure: 'Low tire pressure warning',
-          wiper: 'Rear window wiper',
-          headlight: 'Fully automatic headlights'
-        },
-        {
-          car_id: 18,
-          electStab: 'Electronic stability',
-          wireless: 'Wireless phone connectivity',
-          seat: 'Split folding rear seat',
-          keyless: 'Remote keyless entry',
-          tripComp: 'Trip computer',
-          tirePressure: 'Low tire pressure warning',
-          wiper: 'Rear window wiper',
-          headlight: 'Fully automatic headlights'
-        },
-        {
-          car_id: 19,
-          electStab: 'Electronic stability',
-          wireless: 'Wireless phone connectivity',
-          seat: 'Split folding rear seat',
-          keyless: 'Remote keyless entry',
-          tripComp: 'Trip computer',
-          tirePressure: 'Low tire pressure warning',
-          wiper: 'Rear window wiper',
-          headlight: 'Fully automatic headlights'
-        },
-        {
-          car_id: 20,
-          electStab: 'Electronic stability',
-          wireless: 'Wireless phone connectivity',
-          seat: 'Split folding rear seat',
-          keyless: 'Remote keyless entry',
-          tripComp: 'Trip computer',
-          tirePressure: 'Low tire pressure warning',
-          wiper: 'Rear window wiper',
-          headlight: 'Fully automatic headlights'
         }
       ]);
     });
