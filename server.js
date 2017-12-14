@@ -123,19 +123,18 @@ app.patch('/car/:id', function(req, res) {
     .update(req.body.car)
     .then(() => {
       knex('images')
-        .where('id', req.params.id)
+        .where('car_id', req.params.id)
         .update({link:req.body.image})
         .then(()=>{
           knex('features')
-          .where('id', req.params.id)
+          .where('car_id', req.params.id)
           .update(req.body.features)
           .then(() => {
             knex('cars')
             .select()
-            .then(data = res.send(data))
+            .then(data => res.send(data))
           })
         })
-
     })
     .catch(error => {
       console.log('error', error);
