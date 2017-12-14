@@ -54,7 +54,9 @@ app.get('/', function(req, res) {
 //------- Display All Cars --------- //
 app.get('/cars', function(req, res) {
   knex.raw(`SELECT DISTINCT ON (cars.id)
-    cars.id, cars.year, cars.make, cars.model, cars.trim, cars.engine, cars.drive_type, cars.body_type, cars.ext_color, cars.int_color, cars.transmission, cars.price, cars.sale, cars.status, cars.vin, images.link FROM cars  RIGHT JOIN images ON cars.id = images.car_id;`)
+    cars.id, cars.year, cars.make, cars.model, cars.trim, cars.engine, cars.drive_type, cars.body_type, cars.ext_color, cars.int_color, cars.transmission, cars.price, cars.sale, cars.status, cars.vin, images.link, features.elect_stab, features.wireless, features.seat, features.keyless, features.trip_comp, features.tire_pressure, features.wiper, features.headlight FROM cars
+    RIGHT JOIN images ON cars.id = images.car_id
+    RIGHT JOIN features ON cars.id = features.car_id;`)
   .then(data => {
     res.json(data.rows);
   })
@@ -95,22 +97,44 @@ app.post('/car', function(req, res){
   .then(function(car){
     new Images().save({
       car_id: car.get('id'),
-      link: req.body.linkOne,
-      link: req.body.linkTwo
+      link: req.body.link
     }),
     new Features().save({
       car_id: car.get('id'),
-      electStab: req.body.electStab,
+      elect_stab: req.body.elect_stab,
       wireless: req.body.wireless,
       seat: req.body.seat,
       keyless: req.body.keyless,
-      tripComp: req.body.tripComp,
-      tirePressure: req.body.tirePressure,
+      trip_comp: req.body.trip_comp,
+      tire_pressure: req.body.tire_pressure,
       wiper: req.body.wiper,
       headlight: req.body.headlight
     })
     .then(res.sendStatus(200));
   });
+})
+
+//------- Edit Car --------- //
+app.patch('/car/:id', function(req, res) {
+  knex('user')
+    .where('id', req.params.id)
+    .update(req.body)
+    .then(res.sendStatus(200))
+    .catch(error => {
+      console.log('error', error);
+    })
+})
+
+
+//------- Delete One Message --------- //
+app.delete('/car/:id', function(req, res) {
+  knex('cars')
+    .where('id', req.params.id)
+    .del()
+    .then(res.sendStatus(200))
+    .catch(error => {
+      console.log('error', error);
+    })
 })
 
 
@@ -178,10 +202,11 @@ app.delete('/messages/:id', function(req, res) {
   knex('user')
     .where('id', req.params.id)
     .del()
-    .then(res.sendStatus(200))
-    .catch(error => {
-      console.log('error', error);
-    })
+    .then(() => {
+      knex('user')
+      .select()
+      .then(data => res.send(data))
+  })
 })
 
 //

@@ -7,12 +7,12 @@ exports.up = function(knex, Promise) {
     .inTable('cars')
     .onDelete('CASCADE')
     .index();
-    table.string('electStab');
+    table.string('elect_stab');
     table.string('wireless');
     table.string('seat');
     table.string('keyless');
-    table.string('tripComp');
-    table.string('tirePressure');
+    table.string('trip_comp');
+    table.string('tire_pressure');
     table.string('wiper');
     table.string('headlight');
     table.timestamps(true, true);
