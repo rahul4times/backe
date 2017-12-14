@@ -116,7 +116,7 @@ app.post('/car', function(req, res){
 
 //------- Edit Car --------- //
 app.patch('/car/:id', function(req, res) {
-  knex('user')
+  knex('cars')
     .where('id', req.params.id)
     .update(req.body)
     .then(res.sendStatus(200))
@@ -126,15 +126,16 @@ app.patch('/car/:id', function(req, res) {
 })
 
 
-//------- Delete One Message --------- //
+//------- Delete Car --------- //
 app.delete('/car/:id', function(req, res) {
   knex('cars')
     .where('id', req.params.id)
     .del()
-    .then(res.sendStatus(200))
-    .catch(error => {
-      console.log('error', error);
-    })
+    .then(() => {
+      knex('cars')
+      .select()
+      .then(data => res.send(data))
+  })
 })
 
 
