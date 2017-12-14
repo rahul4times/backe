@@ -116,10 +116,27 @@ app.post('/car', function(req, res){
 
 //------- Edit Car --------- //
 app.patch('/car/:id', function(req, res) {
+  console.log('PARAM ID', req.params.id);
+  console.log('BODY', req.body);
   knex('cars')
     .where('id', req.params.id)
-    .update(req.body)
-    .then(res.sendStatus(200))
+    .update(req.body.car)
+    .then(() => {
+      knex('images')
+        .where('id', req.params.id)
+        .update({link:req.body.image})
+        .then(()=>{
+          knex('features')
+          .where('id', req.params.id)
+          .update(req.body.features)
+          .then(() => {
+            knex('cars')
+            .select()
+            .then(data = res.send(data))
+          })
+        })
+
+    })
     .catch(error => {
       console.log('error', error);
     })
